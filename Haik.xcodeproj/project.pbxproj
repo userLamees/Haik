@@ -45,6 +45,11 @@
 			path = HaikUITests;
 			sourceTree = "<group>";
 		};
+		3C4EC0832F36BADD00A96EA7 /* HomePage */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HomePage;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 		3C4EBFD02F33E9E300A96EA7 = {
 			isa = PBXGroup;
 			children = (
+				3C4EC0832F36BADD00A96EA7 /* HomePage */,
 				3C4EBFDB2F33E9E300A96EA7 /* Haik */,
 				3C4EBFE92F33E9E400A96EA7 /* HaikTests */,
 				3C4EBFF32F33E9E400A96EA7 /* HaikUITests */,
@@ -109,6 +115,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				3C4EBFDB2F33E9E300A96EA7 /* Haik */,
+				3C4EC0832F36BADD00A96EA7 /* HomePage */,
 			);
 			name = Haik;
 			packageProductDependencies = (
