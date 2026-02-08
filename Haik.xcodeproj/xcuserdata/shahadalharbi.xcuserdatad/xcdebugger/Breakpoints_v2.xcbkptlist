@@ -3,4 +3,27 @@
    uuid = "BDF56263-8516-4373-BE20-B4DB20B48472"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         <BreakpointContent
+            uuid = "4FBE7764-CCD2-4166-8D03-CDB7E5970539"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "*0x2426f5d30">
+            <Locations>
+               <Location
+                  uuid = "4FBE7764-CCD2-4166-8D03-CDB7E5970539 - 8635f98bf1ba425a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__abort_with_payload"
+                  moduleName = "libsystem_kernel.dylib"
+                  usesParentBreakpointCondition = "Yes">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

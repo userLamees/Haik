@@ -4,8 +4,6 @@
 //
 //  Created by lamess on 07/02/2026.
 //
-
-
 import SwiftUI
 import MapKit
 
@@ -16,33 +14,26 @@ struct HomeScreen: View {
             span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)
         )
     )
-    
+
     @State private var selectedNeighborhood: Neighborhood? = nil
-    
+    @State private var showRecommendation = false
+
     var body: some View {
-        ZStack(alignment: .bottom) {
-            Map(position: $position) {
-                ForEach(NeighborhoodData.all) { neighborhood in
-                    Annotation("", coordinate: neighborhood.coordinate) {
-                        // استخدام مكون الدبوس المخصص
-                        NeighborhoodPin(neighborhood: neighborhood) {
-                            withAnimation(.spring()) {
-                                selectedNeighborhood = neighborhood
+        NavigationStack {
+            ZStack(alignment: .bottom) {
+                Map(position: $position) {
+                    ForEach(NeighborhoodData.all) { neighborhood in
+                        Annotation("", coordinate: neighborhood.coordinate) {
+                            NeighborhoodPin(neighborhood: neighborhood) {
+                                withAnimation(.spring()) {
+                                    selectedNeighborhood = neighborhood
+                                }
                             }
                         }
                     }
                 }
-            }
-            .ignoresSafeArea()
-            
-            VStack {
-                // شريط البحث المرتفع
-                topSearchBar
-                    .padding(.top, 40)
-                
-                Spacer()
-                
-                // بطاقة المعلومات أو تلميح البداية
+                .ignoresSafeArea()
+
                 if let neighborhood = selectedNeighborhood {
                     bottomInfoCard(neighborhood: neighborhood)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -50,21 +41,42 @@ struct HomeScreen: View {
                     hintCard
                 }
             }
+            .safeAreaInset(edge: .top) {
+                topSearchBar
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                    .padding(.bottom, 8)
+            }
+            .environment(\.layoutDirection, .rightToLeft)
+            .overlay {
+                if showRecommendation {
+                    NeighborhoodRecommendationFlowView(isPresented: $showRecommendation)
+                        .navigationBarBackButtonHidden(true)
+                        .environment(\.layoutDirection, .rightToLeft)
+                        .transition(.move(edge: .trailing))
+                        .zIndex(1)
+                }
+            }
+            .animation(.easeInOut(duration: 0.25), value: showRecommendation)
         }
-        .environment(\.layoutDirection, .rightToLeft)
     }
 }
 
-// MARK: - Subviews
-
 extension HomeScreen {
-    
+
     private var topSearchBar: some View {
         HStack(spacing: 12) {
-            Image(systemName: "sparkles")
-                .padding(10)
-                .background(.white).clipShape(Circle()).shadow(radius: 2)
-            
+            Button {
+                showRecommendation = true
+            } label: {
+                Image(systemName: "sparkles")
+                    .padding(10)
+                    .background(.white)
+                    .clipShape(Circle())
+                    .shadow(radius: 2)
+            }
+            .buttonStyle(.plain)
+
             HStack {
                 Image(systemName: "magnifyingglass").foregroundColor(.gray)
                 Text("ابحث عن حي...").foregroundColor(.gray)
@@ -73,9 +85,15 @@ extension HomeScreen {
             }
             .padding(.horizontal)
             .frame(height: 44)
-            .background(Color.white).cornerRadius(22).shadow(radius: 2)
-            
-            Image(systemName: "bookmark").padding(10).background(.white).clipShape(Circle()).shadow(radius: 2)
+            .background(Color.white)
+            .cornerRadius(22)
+            .shadow(radius: 2)
+
+            Image(systemName: "bookmark")
+                .padding(10)
+                .background(.white)
+                .clipShape(Circle())
+                .shadow(radius: 2)
         }
         .padding(.horizontal)
     }
@@ -95,11 +113,11 @@ extension HomeScreen {
                 Text("حي \(neighborhood.name)")
                     .font(.system(size: 20, weight: .bold))
             }
-            
-            Spacer().frame(height: 10) // مساحة للبيانات الحقيقية مستقبلاً
-            
+
+            Spacer().frame(height: 10)
+
             Divider()
-            
+
             Button(action: {}) {
                 HStack {
                     Image(systemName: "arrow.left")
@@ -116,7 +134,7 @@ extension HomeScreen {
         .shadow(color: Color.black.opacity(0.1), radius: 10)
         .padding(.bottom, 30)
     }
-    
+
     private var hintCard: some View {
         Text("لسه ما عرفت عن الأحياء؟ اضغط على الحي وبتعرف أكثر")
             .font(.system(size: 14))
@@ -128,11 +146,10 @@ extension HomeScreen {
     }
 }
 
-// مكون الدبوس المخصص (للحفاظ على نظافة كود الخريطة)
 struct NeighborhoodPin: View {
     let neighborhood: Neighborhood
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
@@ -141,9 +158,12 @@ struct NeighborhoodPin: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(red: 0.35, green: 0.65, blue: 0.85)))
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color(red: 0.35, green: 0.65, blue: 0.85))
+                    )
                     .shadow(radius: 2)
-                
+
                 Text(neighborhood.name)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.black)
@@ -154,7 +174,7 @@ struct NeighborhoodPin: View {
         }
     }
 }
+
 #Preview {
     HomeScreen()
-    
 }

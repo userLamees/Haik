@@ -10,28 +10,32 @@ import SwiftUI
 struct NeighborhoodRecommendationFlowView: View {
 
     @StateObject private var vm = NeighborhoodRecommendationViewModel()
+    @Binding var isPresented: Bool
 
     var body: some View {
-        NavigationStack {
-            NeighborhoodQuestionView(vm: vm)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
+        NeighborhoodQuestionView(vm: vm)
+            .environment(\.layoutDirection, .rightToLeft)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        if vm.currentIndex > 0 {
                             withAnimation(.easeInOut(duration: 0.18)) {
                                 vm.goBack()
                             }
-                        } label: {
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.black)
-                                .frame(width: 44, height: 44)
-                                .background(Color.white.opacity(0.7))
-                                .clipShape(Circle())
+                        } else {
+                            withAnimation(.easeInOut(duration: 0.25)) {
+                                isPresented = false
+                            }
                         }
-                        .opacity(vm.currentIndex > 0 ? 1 : 0)
-                        .disabled(vm.currentIndex == 0)          
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.black)
+                            .frame(width: 44, height: 44)
+                            .background(Color.white.opacity(0.7))
+                            .clipShape(Circle())
                     }
                 }
-        }
+            }
     }
 }

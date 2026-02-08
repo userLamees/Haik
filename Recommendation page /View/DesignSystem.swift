@@ -14,9 +14,11 @@ enum DS {
 
     static let selectedFillOpacity: Double = 0.15
 
-    static let shadowRadius: CGFloat = 2
+    static let shadowRadius: CGFloat = 10
     static let shadowX: CGFloat = 0
-    static let shadowY: CGFloat = 3
+    static let shadowY: CGFloat = 6
+    static let shadowOpacity: Double = 0.12
+
 
     static let progressWidth: CGFloat = 75
     static let progressHeight: CGFloat = 12
@@ -25,4 +27,13 @@ enum DS {
     static let iconSize: CGFloat = 18
     static let iconWeight: Font.Weight = .semibold
     static let iconColor: Color = Color("Green2Primary")
+    
+    static let autoNextDelaySingle: UInt64 = 900_000_000
+    static let autoNextDelayMultiAfterConfirm: UInt64 = 450_000_000
+    static let scrollToExpandedDelay: TimeInterval = 0.06
+    static let scrollAnimationDuration: Double = 0.25
+    static let expandCollapseAnimationDuration: Double = 0.18
+    static let quickNextAnimationDuration: Double = 0.10
+    static let selectionAnimationDuration: Double = 0.12
+
 }

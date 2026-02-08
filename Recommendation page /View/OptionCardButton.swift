@@ -18,17 +18,19 @@ struct OptionCardButton: View {
         ZStack {
             RoundedRectangle(cornerRadius: DS.cardCornerRadius, style: .continuous)
                 .fill(isSelected ? Color("Green2Primary").opacity(0.14) : .white)
-                .shadow(color: .black.opacity(0.12), radius: 10, x: 0, y: 6)
+                .cardShadow()
 
             HStack(spacing: 12) {
+                Image(systemName: icon.systemName)
+                    .font(.system(size: DS.iconSize, weight: DS.iconWeight))
+                    .foregroundColor(DS.iconColor)
+
                 Text(title)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.trailing)
 
-                Image(systemName: icon.systemName)
-                    .font(icon.font)
-                    .foregroundColor(icon.color)
+                Spacer(minLength: 0)
             }
             .padding(.horizontal, 18)
             .frame(maxWidth: .infinity, alignment: .trailing)

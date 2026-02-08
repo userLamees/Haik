@@ -6,18 +6,24 @@
 //
 
 import Foundation
-import SwiftUI
+
+enum SelectionMode: Hashable {
+    case single
+    case multi(max: Int)
+}
 
 struct Questions: Identifiable, Hashable {
     let id: String
     let title: String
     let options: [RecommendationOption]
+    let selectionMode: SelectionMode
 }
 
 struct RecommendationOption: Identifiable, Hashable {
     let id: String
     let title: String
     let icon: HaikIcon
+    let showsNeighborhoodPicker: Bool
 }
 
 enum HaikIcon: String, Hashable {
@@ -37,8 +43,4 @@ enum HaikIcon: String, Hashable {
     case car = "car"
 
     var systemName: String { rawValue }
-
-    var font: Font { .system(size: DS.iconSize, weight: DS.iconWeight) }
-
-    var color: Color { DS.iconColor }
 }

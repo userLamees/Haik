@@ -1,8 +1,8 @@
 //
-//  shadow.swift
+//  CardShadow.swift
 //  Haik
 //
-//  Created by Shahad Alharbi on 2/8/26.
+//  Created by Shahad Alharbi on 2/9/26.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
     func cardShadow() -> some View {
         self.shadow(
-            color: Color.black.opacity(0.25),
+            color: Color.black.opacity(DS.shadowOpacity),
             radius: DS.shadowRadius,
             x: DS.shadowX,
             y: DS.shadowY

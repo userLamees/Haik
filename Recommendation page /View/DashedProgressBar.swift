@@ -14,7 +14,7 @@ struct DashedProgressBar: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            ForEach(Array(stride(from: total, through: 1, by: -1)), id: \.self) { step in
+            ForEach(1...total, id: \.self) { step in
                 let isFilled = step <= current
 
                 RoundedRectangle(cornerRadius: DS.progressCornerRadius, style: .continuous)
@@ -26,7 +26,7 @@ struct DashedProgressBar: View {
                     )
             }
         }
-        .frame(maxWidth: .infinity, alignment: .trailing) 
+        .frame(maxWidth: .infinity, alignment: .trailing)
         .padding(.horizontal, 18)
     }
 }
