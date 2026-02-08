@@ -10,43 +10,33 @@ import SwiftUI
 struct OptionCardButton: View {
 
     let title: String
-    let sfSymbol: String
+    let icon: HaikIcon
     let isSelected: Bool
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        ZStack {
+            RoundedRectangle(cornerRadius: DS.cardCornerRadius, style: .continuous)
+                .fill(isSelected ? Color("Green2Primary").opacity(0.14) : .white)
+                .shadow(color: .black.opacity(0.12), radius: 10, x: 0, y: 6)
 
             HStack(spacing: 12) {
-                Spacer(minLength: 0)
-
                 Text(title)
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundColor(.black)
-                    .lineLimit(1)
-
-                Spacer(minLength: 0)
-
-                Image(systemName: sfSymbol)
                     .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(Color("Green2Primary"))
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.trailing)
+
+                Image(systemName: icon.systemName)
+                    .font(icon.font)
+                    .foregroundColor(icon.color)
             }
-            .padding(.horizontal, 16)
-            .frame(height: DS.cardHeight)
-            .background(
-                RoundedRectangle(cornerRadius: DS.cardCornerRadius, style: .continuous)
-                    .fill(
-                        isSelected
-                        ? Color("Green2Primary").opacity(DS.selectedFillOpacity)
-                        : .white
-                    )
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: DS.cardCornerRadius, style: .continuous)
-                    .stroke(Color.black.opacity(0.05), lineWidth: 1)
-            )
-            .cardShadow()
+            .padding(.horizontal, 18)
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .buttonStyle(.plain)
+        .frame(height: DS.cardHeight)
+        .contentShape(RoundedRectangle(cornerRadius: DS.cardCornerRadius, style: .continuous))
+        .onTapGesture {
+            onTap()
+        }
     }
 }

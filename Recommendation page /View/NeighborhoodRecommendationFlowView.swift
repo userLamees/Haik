@@ -16,18 +16,22 @@ struct NeighborhoodRecommendationFlowView: View {
             NeighborhoodQuestionView(vm: vm)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        if vm.currentIndex > 0 {
-                            Button {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.18)) {
                                 vm.goBack()
-                            } label: {
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.black)
                             }
+                        } label: {
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.black)
+                                .frame(width: 44, height: 44)
+                                .background(Color.white.opacity(0.7))
+                                .clipShape(Circle())
                         }
+                        .opacity(vm.currentIndex > 0 ? 1 : 0)
+                        .disabled(vm.currentIndex == 0)          
                     }
                 }
         }
-        .environment(\.layoutDirection, .rightToLeft)
     }
 }

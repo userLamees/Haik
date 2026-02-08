@@ -8,12 +8,21 @@
 import SwiftUI
 
 enum DS {
+    static let cardCornerRadius: CGFloat = 24
+    static let cardHeight: CGFloat = 69
+    static let cardSpacing: CGFloat = 30
+
     static let selectedFillOpacity: Double = 0.15
 
-    static let cardCornerRadius: CGFloat = 14
-    static let cardHeight: CGFloat = 48
-
-    static let shadowRadius: CGFloat = 6
-    static let shadowX: CGFloat = 2
+    static let shadowRadius: CGFloat = 2
+    static let shadowX: CGFloat = 0
     static let shadowY: CGFloat = 3
+
+    static let progressWidth: CGFloat = 75
+    static let progressHeight: CGFloat = 12
+    static let progressCornerRadius: CGFloat = 24
+
+    static let iconSize: CGFloat = 18
+    static let iconWeight: Font.Weight = .semibold
+    static let iconColor: Color = Color("Green2Primary")
 }

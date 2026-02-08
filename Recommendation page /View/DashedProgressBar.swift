@@ -13,20 +13,20 @@ struct DashedProgressBar: View {
     let current: Int
 
     var body: some View {
-        HStack(spacing: 10) {
-            ForEach(0..<total, id: \.self) { index in
+        HStack(spacing: 12) {
+            ForEach(Array(stride(from: total, through: 1, by: -1)), id: \.self) { step in
+                let isFilled = step <= current
 
-                let isFilled = index >= (total - current)
-
-                Capsule()
-                    .fill(isFilled ? Color("Green2Primary") : Color.clear)
-                    .frame(height: 6)
+                RoundedRectangle(cornerRadius: DS.progressCornerRadius, style: .continuous)
+                    .fill(isFilled ? Color("Green2Primary") : .white)
+                    .frame(width: DS.progressWidth, height: DS.progressHeight)
                     .overlay(
-                        Capsule()
+                        RoundedRectangle(cornerRadius: DS.progressCornerRadius, style: .continuous)
                             .stroke(Color("Green2Primary"), lineWidth: 1)
                     )
             }
         }
+        .frame(maxWidth: .infinity, alignment: .trailing) 
         .padding(.horizontal, 18)
     }
 }
