@@ -50,6 +50,11 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
+		6C89FA172F38B1AF00D72E7D /* Recommendation page  */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Recommendation page ";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,7 @@
 		3C4EBFD02F33E9E300A96EA7 = {
 			isa = PBXGroup;
 			children = (
+				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
 				3C4EBFDB2F33E9E300A96EA7 /* Haik */,
 				3C4EBFE92F33E9E400A96EA7 /* HaikTests */,
@@ -116,6 +122,7 @@
 			fileSystemSynchronizedGroups = (
 				3C4EBFDB2F33E9E300A96EA7 /* Haik */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
+				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
 			);
 			name = Haik;
 			packageProductDependencies = (
@@ -402,7 +409,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6NHY572525;
+				DEVELOPMENT_TEAM = 2GHTD7A3A9;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -450,7 +457,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6NHY572525;
+				DEVELOPMENT_TEAM = 2GHTD7A3A9;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
