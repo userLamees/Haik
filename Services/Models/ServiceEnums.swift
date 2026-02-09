@@ -4,10 +4,9 @@
 //
 //  Created by layan Alturki on 09/02/2026.
 //
-
 import Foundation
+import SwiftUI
 
-// MARK: - Service Categories (fixed for all neighborhoods)
 enum ServiceCategory: String, CaseIterable, Identifiable {
     case hospitals = "مستشفيات"
     case groceries = "تموينات"
@@ -24,7 +23,23 @@ enum ServiceCategory: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    // Uses your existing HaikIcon enum (NO redeclaration)
+    var mapsQuery: String {
+        switch self {
+        case .groceries: return "بقالة"
+        case .supermarkets: return "سوبرماركت"
+        case .restaurants: return "مطعم"
+        case .cafes: return "مقهى"
+        case .hospitals: return "مستشفى"
+        case .schools: return "مدرسة"
+        case .universities: return "جامعة"
+        case .parks: return "حديقة"
+        case .libraries: return "مكتبة"
+        case .cinema: return "سينما"
+        case .gasStations: return "محطة وقود"
+        case .metro: return "محطة مترو"
+        }
+    }
+
     var icon: HaikIcon {
         switch self {
         case .parks: return .calm
@@ -37,25 +52,15 @@ enum ServiceCategory: String, CaseIterable, Identifiable {
         }
     }
 
-    // Icon colors from your HEX codes
     var iconHexColor: String {
         switch self {
-        case .restaurants: return "E7CB62"     // yellow
-        case .cinema: return "E7CB62"         // yellow
-        case .cafes: return "673AB7"          // purple
-        case .universities: return "673AB7"   // purple
-        case .metro: return "57AFDD"          // blue
-        case .hospitals: return "57AFDD"      // blue
-        case .parks: return "0D896E"          // green
-        case .libraries: return "0D896E"      // green
-        case .schools: return "E7CB62"        // yellow
-        case .gasStations: return "0D896E"    // green (icon from SF)
-        case .groceries: return "0D896E"      // green
-        case .supermarkets: return "673AB7"   // purple (basket)
+        case .restaurants, .cinema, .schools: return "E7CB62"
+        case .cafes, .universities, .supermarkets: return "673AB7"
+        case .metro, .hospitals: return "57AFDD"
+        case .parks, .libraries, .gasStations, .groceries: return "0D896E"
         }
     }
 
-    // If icon not available in your HaikIcon (like gas), use SF Symbol here
     var fallbackSystemSymbol: String? {
         switch self {
         case .gasStations:
@@ -63,5 +68,28 @@ enum ServiceCategory: String, CaseIterable, Identifiable {
         default:
             return nil
         }
+    }
+
+    var systemIconName: String {
+        if let fallbackSystemSymbol { return fallbackSystemSymbol }
+        return "mappin.and.ellipse"
+    }
+
+    func iconColor() -> Color {
+        Color(hex: iconHexColor)
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let cleaned = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var value: UInt64 = 0
+        Scanner(string: cleaned).scanHexInt64(&value)
+
+        let r = Double((value >> 16) & 0xFF) / 255
+        let g = Double((value >> 8) & 0xFF) / 255
+        let b = Double(value & 0xFF) / 255
+
+        self.init(red: r, green: g, blue: b)
     }
 }

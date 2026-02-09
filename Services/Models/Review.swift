@@ -4,10 +4,8 @@
 //
 //  Created by layan Alturki on 09/02/2026.
 //
-
 import Foundation
 
-// MARK: - Review Categories (chips)
 enum ReviewCategory: String, CaseIterable, Identifiable {
     case electricity = "الكهرباء"
     case water = "المياه"
@@ -19,7 +17,6 @@ enum ReviewCategory: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-// MARK: - Review Model
 struct NeighborhoodReview: Identifiable, Hashable {
     let id: UUID
     let category: ReviewCategory
@@ -27,7 +24,13 @@ struct NeighborhoodReview: Identifiable, Hashable {
     let comment: String
     let createdAt: Date
 
-    init(id: UUID = UUID(), category: ReviewCategory, rating: Int, comment: String, createdAt: Date = Date()) {
+    init(
+        id: UUID = UUID(),
+        category: ReviewCategory,
+        rating: Int,
+        comment: String,
+        createdAt: Date = Date()
+    ) {
         self.id = id
         self.category = category
         self.rating = rating

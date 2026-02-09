@@ -1,11 +1,10 @@
 import SwiftUI
 
-struct PlaceDetailSheetView: View {
+struct PlaceDetailsSheetView: View {
 
     let place: Place
     let service: ServiceCategory
 
-    // Assets
     private let greenPrimary = Color("GreenPrimary")
     private let blueSecondary = Color("BlueSecondary")
 
@@ -17,11 +16,10 @@ struct PlaceDetailSheetView: View {
                 .frame(width: 50, height: 6)
                 .padding(.top, 10)
 
-            // ✅ Stars أعلى اليسار في الشيت
             HStack(spacing: 8) {
                 ForEach(1...5, id: \.self) { i in
                     Image(systemName: "star.fill")
-                        .font(.system(size: 22, weight: .regular))
+                        .font(.system(size: 22))
                         .foregroundStyle(i <= place.rating ? Color.yellow : Color.gray.opacity(0.35))
                 }
                 Spacer()
@@ -29,10 +27,8 @@ struct PlaceDetailSheetView: View {
             .padding(.horizontal, 20)
 
             HStack {
-
-                // ✅ مفتوح/مغلق (يسار)
                 Text(place.isOpen ? "مفتوح" : "مغلق")
-                    .font(.system(size: 18, weight: .regular))
+                    .font(.system(size: 18))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 18)
                     .padding(.vertical, 10)
@@ -41,15 +37,13 @@ struct PlaceDetailSheetView: View {
 
                 Spacer()
 
-                // ✅ اسم المكان (يمين)
                 Text(place.name)
-                    .font(.system(size: 26, weight: .regular))
+                    .font(.system(size: 26))
                     .foregroundStyle(.black)
 
-                // ✅ أيقونة الخدمة (يمين داخل كارد)
-                serviceIcon
-                    .font(.system(size: 34, weight: .regular))
-                    .foregroundStyle(greenPrimary)
+                Image(systemName: service.systemIconName)
+                    .font(.system(size: 34))
+                    .foregroundStyle(service.iconColor())
                     .frame(width: 66, height: 66)
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -57,15 +51,12 @@ struct PlaceDetailSheetView: View {
             }
             .padding(.horizontal, 20)
 
-            Spacer().frame(height: 8)
-
-            // ✅ خذني للموقع (بدون ربط الآن)
             Button { } label: {
                 HStack(spacing: 10) {
                     Image(systemName: "paperplane")
-                        .font(.system(size: 20, weight: .regular))
+                        .font(.system(size: 20))
                     Text("خذني للموقع")
-                        .font(.system(size: 20, weight: .regular))
+                        .font(.system(size: 20))
                 }
                 .foregroundStyle(blueSecondary)
                 .frame(maxWidth: .infinity)
@@ -77,12 +68,5 @@ struct PlaceDetailSheetView: View {
         }
         .environment(\.layoutDirection, .rightToLeft)
         .background(Color.white)
-    }
-
-    private var serviceIcon: Image {
-        if let fallback = service.fallbackSystemSymbol {
-            return Image(systemName: fallback)
-        }
-        return Image(systemName: service.icon.systemName)
     }
 }

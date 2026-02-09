@@ -376,7 +376,7 @@ struct NeighborhoodSearchField: View {
         .frame(maxWidth: .infinity, alignment: .trailing)
         .background(Color("GreyBackground"))
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-        .environment(\.layoutDirection, .rightToLeft)
+        .environment(\.layoutDirection, .leftToRight)
     }
 }
 
@@ -403,10 +403,11 @@ struct NeighborhoodRow: View {
                     .frame(width: 18, height: 18)
             }
             .padding(.horizontal, 14)
-            .frame(maxWidth: .infinity, alignment: .trailing)
+            .frame(maxWidth: .infinity, alignment: .trailing)        .environment(\.layoutDirection, .leftToRight)
+
         }
         .frame(height: 48)
-        .environment(\.layoutDirection, .rightToLeft)
+        .environment(\.layoutDirection, .leftToRight)
     }
 }
 
