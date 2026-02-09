@@ -17,6 +17,9 @@ struct HomeScreen: View {
 
     @State private var selectedNeighborhood: Neighborhood? = nil
     @State private var showRecommendation = false
+    @State private var showServices = false
+    @State private var neighborhoodForServices: Neighborhood? = nil
+
 
         @State private var searchText = ""
         @FocusState private var isSearchFocused: Bool
@@ -68,6 +71,16 @@ struct HomeScreen: View {
                 }
             }
             .animation(.easeInOut(duration: 0.25), value: showRecommendation)
+            .navigationDestination(isPresented: $showServices) {
+                if let n = neighborhoodForServices {
+                    NeighborhoodServicesView(neighborhood: n)
+                        .navigationBarBackButtonHidden(true)
+                        .environment(\.layoutDirection, .rightToLeft)
+                }
+            }
+
+     
+
         }
     }
 }
@@ -129,7 +142,10 @@ extension HomeScreen {
 
             Divider()
 
-            Button(action: {}) {
+            Button {
+                neighborhoodForServices = neighborhood
+                showServices = true
+            } label: {
                 HStack {
                     Text("لمزيد من المعلومات عن الحي")
                     Image(systemName: "arrow.left")
@@ -138,6 +154,7 @@ extension HomeScreen {
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.black)
             }
+
         }
         .padding(25)
         .frame(width: 360)

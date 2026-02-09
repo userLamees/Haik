@@ -2,122 +2,86 @@ import SwiftUI
 
 struct ServiceListView: View {
 
-    // MARK: - Inputs
-    let service: ServiceCategory           // ✅ عشان التايتل يتغير حسب الخدمة
-    let places: [Place]                    // ✅ الداتا (dummy الحين)
+    let neighborhood: Neighborhood
+    let service: ServiceCategory
 
-    // MARK: - UI State
-    @State private var selectedPlace: Place? = nil
-
-    // MARK: - Assets
+    @StateObject private var vm: ServicesListViewModel
     private let pageBackground = Color("PageBackground")
-    private let greenPrimary = Color("GreenPrimary")
 
-    // MARK: - Row constants (from your Figma)
-    private let rowWidth: CGFloat = 348
-    private let rowHeight: CGFloat = 69
-    private let rowCorner: CGFloat = 24
-
-    var body: some View {
-        ZStack {
-            pageBackground.ignoresSafeArea()
-
-            VStack(spacing: 18) {
-
-                header
-
-                VStack(spacing: 18) {
-                    ForEach(places) { place in
-                        Button {
-                            selectedPlace = place
-                        } label: {
-                            placeRow(place)
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-                .padding(.top, 6)
-
-                Spacer()
-            }
-            .padding(.top, 10)
-        }
-        .environment(\.layoutDirection, .rightToLeft)
-        .navigationBarBackButtonHidden(true)
-        .sheet(item: $selectedPlace) { place in
-            PlaceDetailSheetView(place: place, service: service)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-        }
+    init(neighborhood: Neighborhood, service: ServiceCategory) {
+        self.neighborhood = neighborhood
+        self.service = service
+        _vm = StateObject(wrappedValue: ServicesListViewModel(neighborhood: neighborhood, service: service))
     }
 
-    // MARK: - Header (Title dynamic, 34, black, SF Regular)
-    private var header: some View {
-        ZStack {
+    var body: some View {
+        VStack(spacing: 12) {
+
             HStack {
-                BackCircleButton(tint: greenPrimary)
                 Spacer()
+                Text(vm.title)
+                    .font(.system(size: 26, weight: .regular))
+                    .foregroundStyle(.black)
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 12)
+
+            if vm.isLoading {
+                ProgressView()
+                    .padding(.top, 30)
+            } else {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 12) {
+                        ForEach(vm.places) { place in
+                            Button {
+                                vm.selectedPlace = place
+                            } label: {
+                                placeRow(place)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    .padding(.bottom, 30)
+                }
+            }
+        }
+        .background(pageBackground.ignoresSafeArea())
+        .environment(\.layoutDirection, .rightToLeft)
+        .task {
+            await vm.load()
+        }
+        .sheet(item: $vm.selectedPlace) { place in
+            PlaceDetailsSheetView(place: place, service: service)
+                .presentationDetents([.medium, .large])
+        }
+    }
+
+    private func placeRow(_ place: Place) -> some View {
+        HStack(spacing: 12) {
+
+            VStack(alignment: .trailing, spacing: 6) {
+                Text(place.name)
+                    .font(.system(size: 18, weight: .regular))
+                    .foregroundStyle(.black)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                Text(place.address)
+                    .font(.system(size: 13, weight: .regular))
+                    .foregroundStyle(.gray)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .lineLimit(2)
             }
 
-            Text(service.rawValue) // ✅ حدائق / مستشفيات / ...
-                .font(.system(size: 34, weight: .regular))
-                .foregroundStyle(.black)
-        }
-        .padding(.horizontal, 22)
-    }
-
-    // MARK: - Place Row (348x69, corner 24, NO border, shadow only)
-    private func placeRow(_ place: Place) -> some View {
-        HStack {
-
-            // ✅ الإشارة (chevron) داخل البوكس مثل تصميمك
             Image(systemName: "chevron.left")
-                .font(.system(size: 18, weight: .regular))
-                .foregroundStyle(Color.gray.opacity(0.65))
-                .padding(.leading, 18)
-
-            Spacer()
-
-            Text(place.name)
-                .font(.system(size: 24, weight: .regular))
-                .foregroundStyle(.black)
-
-            // ✅ أيقونة الخدمة تتغير حسب الخدمة (حدائق = شجرة، مترو = مترو... إلخ)
-            serviceIcon
-                .font(.system(size: 34, weight: .regular))
-                .foregroundStyle(greenPrimary)
-                .padding(.trailing, 18)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(Color.gray.opacity(0.7))
         }
-        .frame(width: rowWidth, height: rowHeight)
+        .padding(.vertical, 14)
+        .padding(.horizontal, 14)
         .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: rowCorner, style: .continuous))
-        .shadow(color: .black.opacity(0.14), radius: 12, x: 0, y: 10)
-    }
-
-    private var serviceIcon: Image {
-        // لو عندك fallback SF Symbol (مثل fuelpump)
-        if let fallback = service.fallbackSystemSymbol {
-            return Image(systemName: fallback)
-        }
-        // غير كذا يستخدم HaikIcon اللي عندك
-        return Image(systemName: service.icon.systemName)
-    }
-}
-
-// MARK: - Back button (circle)
-private struct BackCircleButton: View {
-    @Environment(\.dismiss) private var dismiss
-    let tint: Color
-
-    var body: some View {
-        Button { dismiss() } label: {
-            Image(systemName: "arrow.right") // RTL
-                .font(.system(size: 18, weight: .regular))
-                .foregroundStyle(tint)
-                .frame(width: 56, height: 56)
-                .background(Color.white)
-                .clipShape(Circle())
-                .shadow(color: .black.opacity(0.12), radius: 12, x: 0, y: 8)
-        }
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .shadow(color: .black.opacity(0.06), radius: 10, x: 0, y: 6)
     }
 }
