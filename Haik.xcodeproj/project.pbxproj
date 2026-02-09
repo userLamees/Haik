@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5CD7168E2F3A23B600B73BBA /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7168D2F3A23B600B73BBA /* test.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3C4EBFE72F33E9E400A96EA7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		3C4EBFD92F33E9E300A96EA7 /* Haik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4EBFE62F33E9E400A96EA7 /* HaikTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HaikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4EBFF02F33E9E400A96EA7 /* HaikUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HaikUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CD7168D2F3A23B600B73BBA /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -103,6 +108,7 @@
 		3C4EBFD02F33E9E300A96EA7 = {
 			isa = PBXGroup;
 			children = (
+				5CD7168D2F3A23B600B73BBA /* test.swift */,
 				FB8B9E6B2F397DA20043B740 /* Services */,
 				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
@@ -270,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CD7168E2F3A23B600B73BBA /* test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +436,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2GHTD7A3A9;
+				DEVELOPMENT_TEAM = CR5UZWN5DA;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -525,7 +532,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6NHY572525;
+				DEVELOPMENT_TEAM = CR5UZWN5DA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
@@ -576,7 +583,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6NHY572525;
+				DEVELOPMENT_TEAM = CR5UZWN5DA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
