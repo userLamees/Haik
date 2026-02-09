@@ -409,3 +409,11 @@ struct NeighborhoodRow: View {
         .environment(\.layoutDirection, .rightToLeft)
     }
 }
+
+#Preview {
+    let flowVM = NeighborhoodRecommendationViewModel()
+    // Force the index to the end to see the result page immediately
+    flowVM.currentIndex = 4
+    
+    return NeighborhoodRecommendationFlowView(isPresented: .constant(true))
+}
