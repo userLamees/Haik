@@ -13,15 +13,6 @@
             continueAfterRunningActions = "No"
             symbolName = "*0x2426f5d30">
             <Locations>
-               <Location
-                  uuid = "4FBE7764-CCD2-4166-8D03-CDB7E5970539 - 8635f98bf1ba425a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__abort_with_payload"
-                  moduleName = "libsystem_kernel.dylib"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
