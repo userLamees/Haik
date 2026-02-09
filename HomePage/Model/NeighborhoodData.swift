@@ -13,6 +13,7 @@ struct Neighborhood: Identifiable {
     let region: String
     let coordinate: CLLocationCoordinate2D
     let rating: String
+    
     let reviewCount: String = "29"
 }
 
