@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		5CD7168E2F3A23B600B73BBA /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7168D2F3A23B600B73BBA /* test.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		3C4EBFE72F33E9E400A96EA7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -31,7 +27,6 @@
 		3C4EBFD92F33E9E300A96EA7 /* Haik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4EBFE62F33E9E400A96EA7 /* HaikTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HaikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4EBFF02F33E9E400A96EA7 /* HaikUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HaikUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CD7168D2F3A23B600B73BBA /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -66,6 +61,11 @@
 		3C4EC0832F36BADD00A96EA7 /* HomePage */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HomePage;
+			sourceTree = "<group>";
+		};
+		5CD7168F2F3A240B00B73BBA /* SavedPage */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SavedPage;
 			sourceTree = "<group>";
 		};
 		6C89FA172F38B1AF00D72E7D /* Recommendation page  */ = {
@@ -108,7 +108,7 @@
 		3C4EBFD02F33E9E300A96EA7 = {
 			isa = PBXGroup;
 			children = (
-				5CD7168D2F3A23B600B73BBA /* test.swift */,
+				5CD7168F2F3A240B00B73BBA /* SavedPage */,
 				FB8B9E6B2F397DA20043B740 /* Services */,
 				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
@@ -147,6 +147,7 @@
 			fileSystemSynchronizedGroups = (
 				3C4EBFDB2F33E9E300A96EA7 /* Haik */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
+				5CD7168F2F3A240B00B73BBA /* SavedPage */,
 				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
 				FB8B9E6B2F397DA20043B740 /* Services */,
 			);
@@ -276,7 +277,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CD7168E2F3A23B600B73BBA /* test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
