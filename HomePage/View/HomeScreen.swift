@@ -8,6 +8,7 @@ import SwiftUI
 import MapKit
 
 struct HomeScreen: View {
+
     @State private var position: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 24.7136, longitude: 46.6753),
@@ -34,6 +35,7 @@ struct HomeScreen: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
+
                 Map(position: $position) {
                     ForEach(NeighborhoodData.all) { neighborhood in
                         Annotation("", coordinate: neighborhood.coordinate) {
@@ -73,14 +75,9 @@ struct HomeScreen: View {
             .animation(.easeInOut(duration: 0.25), value: showRecommendation)
             .navigationDestination(isPresented: $showServices) {
                 if let n = neighborhoodForServices {
-                    NeighborhoodServicesView(neighborhood: n)
-                        .navigationBarBackButtonHidden(true)
-                        .environment(\.layoutDirection, .rightToLeft)
+                    NeighborhoodServicesView(neighborhoodName: n.name, coordinate: n.coordinate)
                 }
             }
-
-     
-
         }
     }
 }
@@ -89,6 +86,7 @@ extension HomeScreen {
 
     private var topSearchBar: some View {
         HStack(spacing: 12) {
+
             Button {
                 showRecommendation = true
             } label: {
@@ -122,18 +120,19 @@ extension HomeScreen {
 
     private func bottomInfoCard(neighborhood: Neighborhood) -> some View {
         VStack(alignment: .trailing, spacing: 15) {
+
             HStack {
                 Text("(\(neighborhood.reviewCount))")
                     .font(.caption)
                     .foregroundColor(.gray)
+
                 ForEach(0..<5) { _ in
                     Image(systemName: "star.fill")
                         .foregroundColor(.yellow)
                         .font(.system(size: 12))
                 }
-                
-                
-                Spacer()
+
+
                 Text("حي \(neighborhood.name)")
                     .font(.system(size: 20, weight: .bold))
             }
@@ -154,7 +153,6 @@ extension HomeScreen {
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.black)
             }
-
         }
         .padding(25)
         .frame(width: 360)
