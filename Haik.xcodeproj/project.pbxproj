@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6C89FA372F39394A00D72E7D /* Exceptions for "Haik" folder in "Haik" target */ = {
+		70D82C2D2F3A08C400850E6F /* Exceptions for "Haik" folder in "Haik" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		3C4EBFDB2F33E9E300A96EA7 /* Haik */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				6C89FA372F39394A00D72E7D /* Exceptions for "Haik" folder in "Haik" target */,
+				70D82C2D2F3A08C400850E6F /* Exceptions for "Haik" folder in "Haik" target */,
 			);
 			path = Haik;
 			sourceTree = "<group>";
@@ -63,14 +63,14 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
+		5CD7168F2F3A240B00B73BBA /* SavedPage */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SavedPage;
+			sourceTree = "<group>";
+		};
 		6C89FA172F38B1AF00D72E7D /* Recommendation page  */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Recommendation page ";
-			sourceTree = "<group>";
-		};
-		FB8B9E6B2F397DA20043B740 /* Services */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -103,6 +103,7 @@
 		3C4EBFD02F33E9E300A96EA7 = {
 			isa = PBXGroup;
 			children = (
+				5CD7168F2F3A240B00B73BBA /* SavedPage */,
 				FB8B9E6B2F397DA20043B740 /* Services */,
 				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
@@ -141,8 +142,8 @@
 			fileSystemSynchronizedGroups = (
 				3C4EBFDB2F33E9E300A96EA7 /* Haik */,
 				3C4EC0832F36BADD00A96EA7 /* HomePage */,
+				5CD7168F2F3A240B00B73BBA /* SavedPage */,
 				6C89FA172F38B1AF00D72E7D /* Recommendation page  */,
-				FB8B9E6B2F397DA20043B740 /* Services */,
 			);
 			name = Haik;
 			packageProductDependencies = (
@@ -429,14 +430,12 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2GHTD7A3A9;
+				DEVELOPMENT_TEAM = CR5UZWN5DA;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Haik/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "نستخدم الميكروفون للبحث الصوتي";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -479,14 +478,16 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+<<<<<<< HEAD
+				DEVELOPMENT_TEAM = BM6CNHVFD8;
+=======
 				DEVELOPMENT_TEAM = 2GHTD7A3A9;
+>>>>>>> main
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Haik/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "نستخدم الميكروفون للبحث الصوتي";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -525,7 +526,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6NHY572525;
+				DEVELOPMENT_TEAM = CR5UZWN5DA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
@@ -576,7 +577,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6NHY572525;
+				DEVELOPMENT_TEAM = CR5UZWN5DA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
