@@ -18,6 +18,16 @@ struct HomeScreen: View {
     @State private var selectedNeighborhood: Neighborhood? = nil
     @State private var showRecommendation = false
 
+        @State private var searchText = ""
+        @FocusState private var isSearchFocused: Bool
+
+        var filteredNeighborhoods: [Neighborhood] {
+            if searchText.isEmpty {
+                return NeighborhoodData.all
+            } else { // ⭐
+                return NeighborhoodData.all.filter { $0.name.contains(searchText) }
+            }
+        }
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
@@ -43,9 +53,9 @@ struct HomeScreen: View {
             }
             .safeAreaInset(edge: .top) {
                 topSearchBar
-                    .padding(.horizontal)
-                    .padding(.top, 8)
-                    .padding(.bottom, 8)
+                .padding(.horizontal)
+                .padding(.top, 8)
+                .padding(.bottom, 8)
             }
             .environment(\.layoutDirection, .rightToLeft)
             .overlay {
@@ -81,7 +91,6 @@ extension HomeScreen {
                 Image(systemName: "magnifyingglass").foregroundColor(.gray)
                 Text("ابحث عن حي...").foregroundColor(.gray)
                 Spacer()
-                Image(systemName: "mic.fill").foregroundColor(.gray)
             }
             .padding(.horizontal)
             .frame(height: 44)
@@ -109,6 +118,8 @@ extension HomeScreen {
                         .foregroundColor(.yellow)
                         .font(.system(size: 12))
                 }
+                
+                
                 Spacer()
                 Text("حي \(neighborhood.name)")
                     .font(.system(size: 20, weight: .bold))
@@ -120,8 +131,9 @@ extension HomeScreen {
 
             Button(action: {}) {
                 HStack {
-                    Image(systemName: "arrow.left")
                     Text("لمزيد من المعلومات عن الحي")
+                    Image(systemName: "arrow.left")
+
                 }
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.black)
@@ -136,7 +148,7 @@ extension HomeScreen {
     }
 
     private var hintCard: some View {
-        Text("لسه ما عرفت عن الأحياء؟ اضغط على الحي وبتعرف أكثر")
+        Text("انقر على الخريطة لاستكشاف الأحياء")
             .font(.system(size: 14))
             .padding()
             .background(Color.white)
@@ -160,7 +172,7 @@ struct NeighborhoodPin: View {
                     .padding(.vertical, 4)
                     .background(
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(Color(red: 0.35, green: 0.65, blue: 0.85))
+                            .fill(Color(.blueSecondary))
                     )
                     .shadow(radius: 2)
 
